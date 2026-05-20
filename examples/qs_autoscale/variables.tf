@@ -241,12 +241,3 @@ variable "servers_enable_volume_encryption" {
   description = "Encrypt the root EBS volume (/dev/xvda) of the server instances with the default aws/ebs KMS key. Limitations when true: only encrypts AMIs whose root device is /dev/xvda (Windows /dev/sda1 and older paravirt Linux get a phantom volume while the actual root stays unencrypted); no CMEK support (no kms_key_id variable); aws/ebs-encrypted snapshots cannot be shared cross-account directly; not retroactive - only newly-launched instances are encrypted."
   default = true
 }
-variable "existing_security_group_id" {
-  type = string
-  description = "(Optional) The ID of an existing Security Group to use (e.g. sg-0123456789abcdef0). If empty, a new Security Group open to all traffic (0.0.0.0/0) will be created"
-  default = ""
-  validation {
-    condition     = can(regex("^(sg-[0-9a-f]{8,17})?$", var.existing_security_group_id))
-    error_message = "The existing_security_group_id must be a valid Security Group ID (e.g. sg-0123456789abcdef0) or left empty."
-  }
-}

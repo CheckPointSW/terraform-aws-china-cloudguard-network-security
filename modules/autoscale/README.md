@@ -66,7 +66,6 @@ module "example_module" {
     allow_upload_download = true
     enable_cloudwatch = false
     gateway_bootstrap_script = "echo 'this is bootstrap script' > /home/admin/bootstrap.txt"
-    existing_security_group_id = ""
 
     // --- Outbound Proxy Configuration (optional) ---
     proxy_elb_type = "internet-facing"
@@ -123,7 +122,6 @@ module "example_module" {
 | proxy_elb_clients                     | The CIDR range of the clients of the proxy                                                                                                                                            | string       | **Default:** 0.0.0.0/0                                                                                                    |
 | gateway_maintenance_mode_password_hash | (Optional) Admin user's password and maintenance-mode password for recovery purposes. Use `grub2-mkpasswd-pbkdf2` on Linux to generate a password hash                                | string       |                                                                                                                                |
 | security_rules                        | List of security rules for ingress and egress.                                                         | list(object({<br/>    direction   = string    <br/>from_port   = any    <br/>to_port     = any <br/>protocol    = any <br/>cidr_blocks = list(any)<br/>}))         | **Default:** []|
-| existing_security_group_id            | (Optional) The ID of an existing Security Group to use (e.g. sg-0123456789abcdef0). If empty, a new Security Group open to all traffic (0.0.0.0/0) will be created                    | string       | **Default:** ""                                                                                                                |
 
 
 
